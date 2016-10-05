@@ -1,10 +1,12 @@
-NormalParticle[] stars = new NormalParticle[300];
+Particle[] stars = new Particle[300];
 
 void setup()
 {
 	size (600,600);
-	for (int i = 0; i < stars.length; i++)
+	for (int i = 2; i < stars.length; i++)
 	{
+		stars[0] = new OddballParticle();
+		stars[1] = new JumboParticle();
 		stars[i] = new NormalParticle();
 	}
 }
@@ -25,20 +27,20 @@ class NormalParticle implements Particle
 	{
 		myX = 300;
 		myY = 300;
-		myAngle = Math.random()*3/2*Math.PI;
+		myAngle = Math.random()*2*Math.PI;
 		mySpeed = Math.random()*4+1;
 		myColor = (255);
 		mySize = (int)(Math.random()*5);
 	}
 	public void move()
-	{
-		myX = myX + mySpeed*Math.cos(myAngle);
-		myY = myY + mySpeed*Math.sin(myAngle);
+	{		
+		myX = myX + (mySpeed*Math.cos(myAngle));
+		myY = myY + (mySpeed*Math.sin(myAngle));
 		if (myX > 600 || myX < 0 || myY > 600 || myY < 0)
 		{
 			myX = 300;
 			myY = 300;
-			myAngle = Math.random()*3/2*Math.PI;
+			myAngle = (Math.random()*2*Math.PI);
 			mySpeed = (Math.random()*4+1);
 			myColor = (255);
 			mySize = (int)(Math.random()*5);
@@ -56,12 +58,54 @@ interface Particle
 	public void show();
 	public void move();
 }
-class OddballParticle
+class OddballParticle implements Particle
 {
-	
+	int myX,myY,myR,myG,myB,mySize;
+	OddballParticle()
+	{
+		myX = (int)(Math.random()*300+150);
+		myY = (int)(Math.random()*300+150);
+		myR = (int)(Math.random()*255);
+		myG = (int)(Math.random()*255);
+		myB = (int)(Math.random()*255);
+		mySize = 25;
+	}
+	public void move()
+	{
+		myX = myX + (int)(Math.random()*6-3);
+		myY = myY + (int)(Math.random()*6-3);
+	}
+	public void show()
+	{
+		noStroke();
+		fill(myR,myG,myB);
+		ellipse(myX,myY,mySize,mySize);
+	}
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-	//your code here
+	public void show()
+	{
+		
+		noStroke();
+		fill(color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255)));
+		ellipse((float)myX,(float)myY,45,45);
+	}
+}
+void mousePressed()
+{
+ 	redraw();
+ 	for (int i = 2; i < stars.length; i++)
+	{
+		stars[0] = new OddballParticle();
+		stars[1] = new JumboParticle();
+		stars[i] = new NormalParticle();
+	}
+ 	background (0);
+	for (int i = 0; i < stars.length; i++)
+	{
+		stars[i].show();
+		stars[i].move();
+	}
 }
 
