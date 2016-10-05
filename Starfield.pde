@@ -88,7 +88,7 @@ class JumboParticle extends NormalParticle
 	{
 		
 		noStroke();
-		fill(color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255)));
+		fill(myColor);
 		ellipse((float)myX,(float)myY,45,45);
 	}
 }
