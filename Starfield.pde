@@ -1,11 +1,11 @@
-Particle[] stars = new Particle[75000];
+Particle[] stars = new Particle[6000];
 void setup()
 {
 	size (600,600);
 	for (int i = 0; i < stars.length; i++)
 	{
-		stars[(int)(i/140)] = new OddballParticle();
-		stars[(int)(i/14)] = new JumboParticle();
+		stars[(int)(i/150)] = new OddballParticle();
+		stars[(int)(i/15)] = new JumboParticle();
 		stars[i] = new NormalParticle();
 	}
 }
