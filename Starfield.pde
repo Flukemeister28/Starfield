@@ -35,7 +35,7 @@ class NormalParticle implements Particle
 	{		
 		myX = myX + (mySpeed*Math.cos(myAngle));
 		myY = myY + (mySpeed*Math.sin(myAngle));
-		if (myX > 600 || myX < 0 || myY > 600 || myY < 0)
+		if (myX > 1700 || myX < -1100 || myY > 1700 || myY < -1100)
 		{
 			myX = 300;
 			myY = 300;
