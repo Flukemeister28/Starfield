@@ -1,12 +1,11 @@
-Particle[] stars = new Particle[300];
-
+Particle[] stars = new Particle[75000];
 void setup()
 {
 	size (600,600);
-	for (int i = 2; i < stars.length; i++)
+	for (int i = 0; i < stars.length; i++)
 	{
-		stars[0] = new OddballParticle();
-		stars[1] = new JumboParticle();
+		stars[(int)(i/140)] = new OddballParticle();
+		stars[(int)(i/14)] = new JumboParticle();
 		stars[i] = new NormalParticle();
 	}
 }
@@ -41,7 +40,7 @@ class NormalParticle implements Particle
 			myX = 300;
 			myY = 300;
 			myAngle = (Math.random()*2*Math.PI);
-			mySpeed = (Math.random()*4+1);
+			mySpeed = (Math.random()*2+1);
 			myColor = (255);
 			mySize = (int)(Math.random()*5);
 		}
@@ -89,23 +88,19 @@ class JumboParticle extends NormalParticle
 		
 		noStroke();
 		fill(myColor);
-		ellipse((float)myX,(float)myY,45,45);
+		ellipse((float)myX,(float)myY,15,15);
 	}
 }
 void mousePressed()
 {
  	redraw();
- 	for (int i = 2; i < stars.length; i++)
-	{
-		stars[0] = new OddballParticle();
-		stars[1] = new JumboParticle();
-		stars[i] = new NormalParticle();
-	}
- 	background (0);
+ 	{
 	for (int i = 0; i < stars.length; i++)
 	{
-		stars[i].show();
-		stars[i].move();
+		stars[(int)(i/140)] = new OddballParticle();
+		stars[(int)(i/14)] = new JumboParticle();
+		stars[i] = new NormalParticle();
 	}
+}
 }
 
