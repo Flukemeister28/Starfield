@@ -1,7 +1,10 @@
-Particle[] stars = new Particle[10000];
+Particle[] stars = new Particle[7500];
 void setup()
 {
-	size (600,600);
+
+	size (1000,1000);
+	mouseX = 500;
+	mouseY = 500;
 	for (int i = 0; i < stars.length; i++)
 	{
 		stars[(int)(i/750)] = new OddballParticle();
@@ -24,8 +27,8 @@ class NormalParticle implements Particle
 	int myColor,mySize;
 	NormalParticle()
 	{
-		myX = 300;
-		myY = 300;
+		myX = mouseX;
+		myY = mouseY;
 		myAngle = Math.random()*2*Math.PI;
 		mySpeed = Math.random()*4+1;
 		myColor = (255);
@@ -37,8 +40,8 @@ class NormalParticle implements Particle
 		myY = myY + (mySpeed*Math.sin(myAngle));
 		if (myX > 1700 || myX < -1100 || myY > 1700 || myY < -1100)
 		{
-			myX = 300;
-			myY = 300;
+			myX = mouseX;
+			myY = mouseY;
 			myAngle = (Math.random()*2*Math.PI);
 			mySpeed = (Math.random()*2+1);
 			myColor = (255);
@@ -62,8 +65,8 @@ class OddballParticle implements Particle
 	int myX,myY,myR,myG,myB,mySize;
 	OddballParticle()
 	{
-		myX = (int)(Math.random()*300+150);
-		myY = (int)(Math.random()*300+150);
+		myX = (int)(Math.random()*mouseX+(mouseX/2));
+		myY = (int)(Math.random()*mouseY+(mouseY/2));
 		myR = (int)(Math.random()*255);
 		myG = (int)(Math.random()*255);
 		myB = (int)(Math.random()*255);
